@@ -1,0 +1,34 @@
+{
+    "name": "PlayerInputAction",
+    "maps": [
+        {
+            "name": "XR",
+            "id": "3f81e367-1d7e-4350-b9ed-63ee464976a4",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "PassThrough",
+                    "id": "515b9bab-a467-472c-b4e4-1355abfaeef8",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "44df3a9e-fc35-4ff9-896c-f2ca2bd6af10",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
