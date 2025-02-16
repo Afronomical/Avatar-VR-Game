@@ -1,0 +1,10 @@
+# ninja log v5
+459	3373	7610932643131660	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	6660e3a0ed9f3480
+367	3382	7610932644613664	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	9787d1f94b51aca8
+211	3385	7610932642925983	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	f5df910f0a1562a0
+554	3388	7610932644536653	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	6c9269ab267f3c51
+690	3512	7610932646346267	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	d64f2af0b40eeba8
+2	3528	7610932646454875	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	3072e7f32d7e80a0
+298	3540	7610932646562640	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	29495b0614dd5934
+114	3576	7610932646886710	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	ea9df1b21defba72
+3577	4060	7610932651318639	C:/Users/Somi3/Somi/Documents/University/Avatar-VR-Game/VR Game/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/1g212t3p/obj/arm64-v8a/libgame.so	637b43bba9e1e1d7

@@ -128,6 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9499522}
+  - component: {fileID: 9499524}
   - component: {fileID: 9499523}
   m_Layer: 0
   m_Name: RightHand
@@ -161,15 +162,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 9499521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 38ba3e2dd4e8bda44b32cfeecf5f6c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Device: 1
-  m_PoseSource: 5
-  m_PoseProviderComponent: {fileID: 0}
-  m_TrackingType: 0
-  m_UpdateType: 0
-  m_UseRelativeTransform: 0
+  targetInput: {fileID: 9499524}
+--- !u!114 &9499524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9499521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c2db0850627e845bf5d330da690b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedHand: 0
 --- !u!1 &611426503
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +483,7 @@ GameObject:
   - component: {fileID: 1085380883}
   - component: {fileID: 1085380882}
   - component: {fileID: 1085380884}
+  - component: {fileID: 1085380885}
   m_Layer: 0
   m_Name: XR_Rig
   m_TagString: Untagged
@@ -488,20 +498,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085380881}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28e6dce2e66679545bb2e3cdc238b038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputAction:
-    m_Name: Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 64574a6a-c5f1-4c5d-8a27-6553605861bc
-    m_Processors: 
-    m_Interactions: Hold
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!4 &1085380883
 Transform:
   m_ObjectHideFlags: 0
@@ -546,9 +547,21 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: New action map
+  m_DefaultActionMap: XR
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1085380885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085380881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5010980214e77184a8cdd015a82dbfd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1400751224
 PrefabInstance:
   m_ObjectHideFlags: 0
