@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Samples/XR Interaction Toolkit/3.0.7/Starter Assets/Practice.unity
     guid: d1de5df07d81eea46979dad9faecf415
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 446916b00bade2f46b23a5f8f09a3aac, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 4ed65c4dec27be046a290991fc2efe9f, type: 2}
   m_UseUCBPForAssetBundles: 0
