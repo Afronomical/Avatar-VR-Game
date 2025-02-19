@@ -14,5 +14,7 @@ public class SettingsData
     {
         // level = setting.level
         //vice versa
+
+        isSnapRotating= setting.isSnapRotating;
     }
 }

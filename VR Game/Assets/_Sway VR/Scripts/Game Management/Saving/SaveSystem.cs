@@ -13,7 +13,7 @@ public class SaveSystem
 
         SettingsData data = new SettingsData(settings); 
 
-
+        
 
         formatter.Serialize(stream, data);
 
