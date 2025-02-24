@@ -1815,7 +1815,6 @@ GameObject:
   m_Component:
   - component: {fileID: 585379284}
   - component: {fileID: 585379283}
-  - component: {fileID: 585379285}
   m_Layer: 0
   m_Name: Gesture System
   m_TagString: Untagged
@@ -1858,25 +1857,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &585379285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585379281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66de2a29fba47b74281931b5fd12b41d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LeftPositionSphere: {fileID: 1889853634}
-  RightPositionSphere: {fileID: 1062495527}
-  leftRotationSphere: {fileID: 594588346}
-  rightRotationSphere: {fileID: 864677824}
-  manager: {fileID: 585379283}
-  trueMat: {fileID: 2100000, guid: 9c67cacd11823cd4996e0309c695731c, type: 2}
-  falseMat: {fileID: 2100000, guid: 90823f48c5007a24d9b8758e6ebb8a1b, type: 2}
 --- !u!1 &594588343
 GameObject:
   m_ObjectHideFlags: 0
@@ -4202,6 +4182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1747114858}
+  - component: {fileID: 1747114859}
   m_Layer: 2
   m_Name: Debug
   m_TagString: Untagged
@@ -4228,6 +4209,25 @@ Transform:
   - {fileID: 1889853632}
   m_Father: {fileID: 244366978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1747114859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747114857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66de2a29fba47b74281931b5fd12b41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftPositionSphere: {fileID: 1889853634}
+  RightPositionSphere: {fileID: 1062495527}
+  leftRotationSphere: {fileID: 594588346}
+  rightRotationSphere: {fileID: 864677824}
+  manager: {fileID: 585379283}
+  trueMat: {fileID: 2100000, guid: 9c67cacd11823cd4996e0309c695731c, type: 2}
+  falseMat: {fileID: 2100000, guid: 90823f48c5007a24d9b8758e6ebb8a1b, type: 2}
 --- !u!4 &1756390771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5480977901411583989, guid: f7b58264930f69f448195d4da1502b3c, type: 3}
