@@ -13,7 +13,7 @@ public class GestureDebugHelper : MonoBehaviour
 
     public GestureDataSO currentGestureData;
 
-    public GameObject gestureDisplay;
+    public GameObject gestureDisplayL, gestureDisplayR;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +33,14 @@ public class GestureDebugHelper : MonoBehaviour
         else
         {
             allCorrectSphere.material = falseMat;
+        }
+        if(gestureDisplayL != null && gestureDisplayR != null)
+        {
+            gestureDisplayR.transform.position = manager.AdjustPositionToPlayer(currentGestureData.rPosition);
+            gestureDisplayL.transform.position = manager.AdjustPositionToPlayer(currentGestureData.lPosition);
+
+            gestureDisplayR.transform.rotation = manager.AdjustRotationToPlayer(currentGestureData.rRotation);
+            gestureDisplayL.transform.rotation = manager.AdjustRotationToPlayer(currentGestureData.lRotation);
         }
         
     }

@@ -14,6 +14,24 @@ public class GestureReader : MonoBehaviour
     [SerializeField] Quaternion rightGestureRotation;
     [SerializeField] Vector3 leftGesturePos;
     [SerializeField] Quaternion leftGestureRotation;
+
+    public Transform GetRightTransform()
+    {
+        Transform trans = transform;
+        trans.position = Head.transform.InverseTransformPoint(rightHand.transform.position);
+
+        trans.rotation = Quaternion.Inverse(Head.transform.rotation) * rightHand.transform.rotation;
+        return trans;
+    }
+    public Transform GetLeftTransform()
+    {
+
+        Transform trans = transform;
+        trans.position = Head.transform.InverseTransformPoint(leftHand.transform.position);
+
+        trans.rotation = Quaternion.Inverse(Head.transform.rotation) * leftHand.transform.rotation;
+        return trans;
+    }
     public bool isLeftPosTrue; 
     public bool isLeftRotTrue;    
     public bool isRightPosTrue;    
@@ -23,7 +41,7 @@ public class GestureReader : MonoBehaviour
     void Update()
     {
 
-        if(CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(gesture.rPosition), gesture.rPositionThreshold))
+        if(CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(gesture.rPosition), gesture.rPositionThreshold) )
         {
             
             isRightPosTrue = true;
@@ -32,7 +50,7 @@ public class GestureReader : MonoBehaviour
         {
             isRightPosTrue = false;
         }
-        if (CheckGestureRotation(rightHand.transform.rotation, AdjustRotationToPlayer(gesture.rRotation), gesture.rRotationThreshold))
+        if ( CheckGestureRotation(rightHand.transform.rotation, AdjustRotationToPlayer(gesture.rRotation), gesture.rRotationThreshold))
         {
             isRightRotTrue = true;
         }
@@ -50,7 +68,7 @@ public class GestureReader : MonoBehaviour
         {
             isLeftPosTrue = false;
         }
-        if(CheckGestureRotation(leftHand.transform.rotation, AdjustRotationToPlayer(gesture.lRotation), gesture.lRotationThreshold))
+        if(CheckGestureRotation(leftHand.transform.rotation, AdjustRotationToPlayer(gesture.lRotation), gesture.rRotationThreshold))
         {
         
             isLeftRotTrue = true;
@@ -64,12 +82,12 @@ public class GestureReader : MonoBehaviour
 
     }
 
-    Vector3 AdjustPositionToPlayer(Vector3 offset)
+    public Vector3 AdjustPositionToPlayer(Vector3 offset)
     {
         return Head.transform.position + Head.transform.right * offset.x + Head.transform.up * offset.y + Head.transform.forward * offset.z;
         
     }
-    Quaternion AdjustRotationToPlayer(Quaternion offset)
+    public Quaternion AdjustRotationToPlayer(Quaternion offset)
     {
         return Head.transform.rotation * offset;
     }
