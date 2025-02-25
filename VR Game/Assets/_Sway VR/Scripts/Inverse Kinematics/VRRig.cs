@@ -34,7 +34,9 @@ public class VRRig : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = headConstraint.position + headBodyOffset;
+        //transform.position = headConstraint.position + headBodyOffset;
+
+        transform.position = Vector3.Lerp(transform.position, headConstraint.position + headBodyOffset, 1000f);
 
         transform.forward = Vector3.ProjectOnPlane(headConstraint.forward, Vector3.up).normalized;
 

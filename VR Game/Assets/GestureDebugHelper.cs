@@ -5,9 +5,9 @@ public class GestureDebugHelper : MonoBehaviour
 
     
 
-    [SerializeField]MeshRenderer leftPositionSphere, rightPositionSphere, leftRotationSphere, rightRotationSphere;
+    [SerializeField]MeshRenderer allCorrectSphere,leftPositionSphere, rightPositionSphere, leftRotationSphere, rightRotationSphere;
 
-    public GestureManager manager;
+    public GestureReader manager;
 
     [SerializeField]Material trueMat, falseMat;
 
@@ -26,7 +26,15 @@ public class GestureDebugHelper : MonoBehaviour
     {
         CheckRight();
         CheckLeft();
-
+        if(manager.CheckGesture(currentGestureData))
+        {
+            allCorrectSphere.material = trueMat;
+        }
+        else
+        {
+            allCorrectSphere.material = falseMat;
+        }
+        
     }
 
     private void CheckLeft()

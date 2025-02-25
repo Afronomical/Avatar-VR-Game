@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GestureDataSO", menuName = "Scriptable Objects/GestureDataSO")]
 public class GestureDataSO : ScriptableObject
 {
-    string GestureName;
+    public string GestureName;
 
     public Vector3 lPosition;
     public Quaternion lRotation;

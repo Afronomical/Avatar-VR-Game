@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GestureManager : MonoBehaviour
+public class GestureReader : MonoBehaviour
 {
 
     [SerializeField] GameObject rightHand;
@@ -60,10 +60,7 @@ public class GestureManager : MonoBehaviour
             isLeftRotTrue= false;
         }
 
-        if (CheckGesture(gesture))
-        {
-            Debug.Log("You are in balance");
-        }
+        
 
     }
 
@@ -84,16 +81,42 @@ public class GestureManager : MonoBehaviour
     }
     public bool CheckGestureRotation(Quaternion currentRotation, Quaternion targetRotation, float rotThreshold)
     {
-        //Debug.Log(Quaternion.Dot(currentRotation, targetRotation));
-        return (Mathf.Abs(Quaternion.Dot(currentRotation, targetRotation)) > rotThreshold);
+        
+        return (Quaternion.Angle(currentRotation, targetRotation) < rotThreshold);
+
+        
     }
 
     public bool CheckGesture(GestureDataSO gesture)
     {
-        return CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(gesture.rPosition), gesture.rPositionThreshold) &&
-               CheckGestureRotation(rightHand.transform.rotation, AdjustRotationToPlayer(gesture.rRotation), gesture.rRotationThreshold) &&
-               CheckGesturePosInRange(leftHand.transform.position, AdjustPositionToPlayer(gesture.lPosition), gesture.lPositionThreshold) &&
-               CheckGestureRotation(leftHand.transform.rotation, AdjustRotationToPlayer(gesture.lRotation), gesture.lRotationThreshold);
+         //Checks the position and rotation of each hand along with a mirrored version
+
+         
+
+        // Check the original gesture (right hand to right position, left hand to left position)
+        if (!CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(gesture.rPosition), gesture.rPositionThreshold) ||
+            !CheckGestureRotation(rightHand.transform.rotation, AdjustRotationToPlayer(gesture.rRotation), gesture.rRotationThreshold))
+        {
+            // If the original right hand fails, check for a mirrored version
+            if (!CheckGesturePosInRange(leftHand.transform.position, AdjustPositionToPlayer(gesture.rPosition), gesture.rPositionThreshold) ||
+                !CheckGestureRotation(leftHand.transform.rotation, AdjustRotationToPlayer(gesture.rRotation), gesture.rRotationThreshold))
+            {
+                return false; // Exit early if both original and mirrored right hand fail
+            }
+        }
+
+        if (!CheckGesturePosInRange(leftHand.transform.position, AdjustPositionToPlayer(gesture.lPosition), gesture.lPositionThreshold) ||
+            !CheckGestureRotation(leftHand.transform.rotation, AdjustRotationToPlayer(gesture.lRotation), gesture.rRotationThreshold))
+        {
+            // If the original left hand fails, check for a mirrored version
+            if (!CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(gesture.lPosition), gesture.lPositionThreshold) ||
+                !CheckGestureRotation(rightHand.transform.rotation, AdjustRotationToPlayer(gesture.lRotation), gesture.rRotationThreshold))
+            {
+                return false; // Exit early if both original and mirrored left hand fail
+            }
+        }
+
+        return true; // Gesture is valid if all checks pass
 
     }
 }
