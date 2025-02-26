@@ -7,7 +7,7 @@ public class GestureManager : MonoBehaviour
 {
     public GestureDataSO[] GestureLibrary;
 
-    [SerializeField] GestureReader gestureReader;
+    public GestureReader gestureReader;
     public static event Action<GestureDataSO> OnGestureIdentified;
 
 

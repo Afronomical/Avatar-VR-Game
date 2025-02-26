@@ -15,6 +15,11 @@ public class GestureReader : MonoBehaviour
     [SerializeField] Vector3 leftGesturePos;
     [SerializeField] Quaternion leftGestureRotation;
 
+    public Transform GetHeadTransform()
+    {
+        Transform trans = Head.transform;
+        return trans;
+    }
     public Transform GetRightTransform()
     {
         Transform trans = transform;

@@ -953,6 +953,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 244366986}
+    - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 244366992}
     - targetCorrespondingSourceObject: {fileID: 1767192433, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1122204718}
@@ -1023,6 +1026,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f056048e36be7459faf0b7022d0163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 585379285}
+  gestureToActivate: {fileID: 11400000, guid: d80c3d351573a06408120f81d025db5f, type: 2}
+  objectToSpawn: {fileID: 977637451316864994, guid: 15700b5e9189c7b4388c93d4957a113d, type: 3}
+--- !u!114 &244366992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244366975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f056048e36be7459faf0b7022d0163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 585379285}
+  gestureToActivate: {fileID: 11400000, guid: aca9096b1c890624d8d9b8185ed35598, type: 2}
+  objectToSpawn: {fileID: 6769071955003356693, guid: 7c1741c196974dc45b0d84b478f8306d, type: 3}
 --- !u!4 &247426708 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7219772299731422950, guid: f7b58264930f69f448195d4da1502b3c, type: 3}
@@ -1857,7 +1878,7 @@ MonoBehaviour:
   rightHand: {fileID: 477962372}
   leftHand: {fileID: 1028664826}
   Head: {fileID: 1122204717}
-  gesture: {fileID: 11400000, guid: d80c3d351573a06408120f81d025db5f, type: 2}
+  gesture: {fileID: 11400000, guid: aca9096b1c890624d8d9b8185ed35598, type: 2}
   rightGesturePos: {x: 0, y: 0, z: 0}
   rightGestureRotation: {x: 0, y: 0, z: 0, w: 0}
   leftGesturePos: {x: 0, y: 0, z: 0}
@@ -1895,6 +1916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GestureLibrary:
   - {fileID: 11400000, guid: d80c3d351573a06408120f81d025db5f, type: 2}
+  - {fileID: 11400000, guid: aca9096b1c890624d8d9b8185ed35598, type: 2}
   gestureReader: {fileID: 0}
 --- !u!114 &585379286
 MonoBehaviour:
@@ -1908,7 +1930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa36339c31af284abbd0912b9861d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gestureToUpdate: {fileID: 11400000, guid: d80c3d351573a06408120f81d025db5f, type: 2}
+  gestureToUpdate: {fileID: 11400000, guid: aca9096b1c890624d8d9b8185ed35598, type: 2}
   gestureReader: {fileID: 585379283}
 --- !u!1 &593696721
 GameObject:
