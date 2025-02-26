@@ -12,7 +12,7 @@ public class GestureUpdater : MonoBehaviour
     void Start()
     {
         gestureReader= GetComponent<GestureReader>();
-        
+
         
     }
     private void Awake()
@@ -24,7 +24,7 @@ public class GestureUpdater : MonoBehaviour
 
         input.XRILeftInteraction.Enable();
 
-        input.XRILeftInteraction.Select.performed += SetNewPose;
+        input.XRILeftInteraction.Activate.performed += SetNewPose;
     }
     private void OnDisable()
     {
@@ -33,15 +33,12 @@ public class GestureUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gestureReader!= null)
-        {
-            
-        }
+        gestureToUpdate = gestureReader.currentGesture;
     }
 
     void SetNewPose(InputAction.CallbackContext ctx)
     {
-
+        //Update the scriptable object for a gesture
         gestureToUpdate.rPosition = gestureReader.GetRightTransform().position;
         gestureToUpdate.rRotation = gestureReader.GetRightTransform().rotation;
 

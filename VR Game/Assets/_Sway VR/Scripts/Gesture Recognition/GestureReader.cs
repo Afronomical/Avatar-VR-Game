@@ -7,35 +7,34 @@ public class GestureReader : MonoBehaviour
     [SerializeField] GameObject leftHand;
     [SerializeField] GameObject Head;
 
-    [SerializeField] GestureDataSO gesture;
-    //[SerializeField] GestureLibrary gestureLibrary;
+    public GestureDataSO currentGesture;
 
     [SerializeField] Vector3 rightGesturePos;
     [SerializeField] Quaternion rightGestureRotation;
     [SerializeField] Vector3 leftGesturePos;
     [SerializeField] Quaternion leftGestureRotation;
-
+    
     public Transform GetHeadTransform()
     {
-        Transform trans = Head.transform;
-        return trans;
+        Transform transf = Head.transform;
+        return transf;
     }
     public Transform GetRightTransform()
     {
-        Transform trans = transform;
-        trans.position = Head.transform.InverseTransformPoint(rightHand.transform.position);
+        Transform transf = transform;
+        transf.position = Head.transform.InverseTransformPoint(rightHand.transform.position);
 
-        trans.rotation = Quaternion.Inverse(Head.transform.rotation) * rightHand.transform.rotation;
-        return trans;
+        transf.rotation = Quaternion.Inverse(Head.transform.rotation) * rightHand.transform.rotation;
+        return transf;
     }
     public Transform GetLeftTransform()
     {
 
-        Transform trans = transform;
-        trans.position = Head.transform.InverseTransformPoint(leftHand.transform.position);
+        Transform transf = transform;
+        transf.position = Head.transform.InverseTransformPoint(leftHand.transform.position);
 
-        trans.rotation = Quaternion.Inverse(Head.transform.rotation) * leftHand.transform.rotation;
-        return trans;
+        transf.rotation = Quaternion.Inverse(Head.transform.rotation) * leftHand.transform.rotation;
+        return transf;
     }
     public bool isLeftPosTrue; 
     public bool isLeftRotTrue;    
@@ -45,66 +44,35 @@ public class GestureReader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(gesture.rPosition), gesture.rPositionThreshold) )
-        {
-            
-            isRightPosTrue = true;
-        }
-        else
-        {
-            isRightPosTrue = false;
-        }
-        if ( CheckGestureRotation(rightHand.transform.rotation, AdjustRotationToPlayer(gesture.rRotation), gesture.rRotationThreshold))
-        {
-            isRightRotTrue = true;
-        }
-        else
-        {
-            isRightRotTrue = false;
-        }
-        
-        if (CheckGesturePosInRange(leftHand.transform.position, AdjustPositionToPlayer(gesture.lPosition), gesture.lPositionThreshold))
-        {
-           
-            isLeftPosTrue = true;
-        }
-        else
-        {
-            isLeftPosTrue = false;
-        }
-        if(CheckGestureRotation(leftHand.transform.rotation, AdjustRotationToPlayer(gesture.lRotation), gesture.rRotationThreshold))
-        {
-        
-            isLeftRotTrue = true;
-        }
-        else
-        {
-            isLeftRotTrue= false;
-        }
-
-        
-
+        DebugGesture();
     }
+
 
     public Vector3 AdjustPositionToPlayer(Vector3 offset)
     {
-        return Head.transform.position + Head.transform.right * offset.x + Head.transform.up * offset.y + Head.transform.forward * offset.z;
-        
+        //Adjusts offset based on players Y position.
+        Quaternion yRotation = Quaternion.Euler(0, Head.transform.eulerAngles.y, 0);
+
+       
+        return Head.transform.position + yRotation * offset;
     }
     public Quaternion AdjustRotationToPlayer(Quaternion offset)
     {
-        return Head.transform.rotation * offset;
+        //Adjusts offset based on players rotation
+        Quaternion yRotation = Quaternion.Euler(0, Head.transform.eulerAngles.y, 0);
+
+        
+        return yRotation * offset;
     }
     public bool CheckGesturePosInRange(Vector3 currentPosition, Vector3 gesturePosition, float posThreshold)
     {
         
-        //Debug.Log(Vector3.Distance(currentPosition, gesturePosition));
+        //True if distance is less than threshold. Obvious I think...
         return Vector3.Distance(currentPosition, gesturePosition) < posThreshold;
     }
     public bool CheckGestureRotation(Quaternion currentRotation, Quaternion targetRotation, float rotThreshold)
     {
-        
+        //True if the angle between them is less than threshold
         return (Quaternion.Angle(currentRotation, targetRotation) < rotThreshold);
 
         
@@ -114,32 +82,72 @@ public class GestureReader : MonoBehaviour
     {
          //Checks the position and rotation of each hand along with a mirrored version
 
-         
+         //TODO: Make mirrored position flipped on Head.Forward axis
 
-        // Check the original gesture (right hand to right position, left hand to left position)
+        //Check original right hand
         if (!CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(gesture.rPosition), gesture.rPositionThreshold) ||
             !CheckGestureRotation(rightHand.transform.rotation, AdjustRotationToPlayer(gesture.rRotation), gesture.rRotationThreshold))
         {
-            // If the original right hand fails, check for a mirrored version
+            //If the original right hand fails, check for a mirrored version
             if (!CheckGesturePosInRange(leftHand.transform.position, AdjustPositionToPlayer(gesture.rPosition), gesture.rPositionThreshold) ||
                 !CheckGestureRotation(leftHand.transform.rotation, AdjustRotationToPlayer(gesture.rRotation), gesture.rRotationThreshold))
             {
-                return false; // Exit early if both original and mirrored right hand fail
+                return false; //Exit if both original and mirrored right hand fail
             }
         }
-
+        //Check original left hand
         if (!CheckGesturePosInRange(leftHand.transform.position, AdjustPositionToPlayer(gesture.lPosition), gesture.lPositionThreshold) ||
             !CheckGestureRotation(leftHand.transform.rotation, AdjustRotationToPlayer(gesture.lRotation), gesture.rRotationThreshold))
         {
-            // If the original left hand fails, check for a mirrored version
+            //If the original left hand fails, check for mirrored version
             if (!CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(gesture.lPosition), gesture.lPositionThreshold) ||
                 !CheckGestureRotation(rightHand.transform.rotation, AdjustRotationToPlayer(gesture.lRotation), gesture.rRotationThreshold))
             {
-                return false; // Exit early if both original and mirrored left hand fail
+                return false; 
             }
         }
 
         return true; // Gesture is valid if all checks pass
 
+    }
+    private void DebugGesture()
+    {
+     //Debug to chekc if   
+        if (CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(currentGesture.rPosition), currentGesture.rPositionThreshold))
+        {
+
+            isRightPosTrue = true;
+        }
+        else
+        {
+            isRightPosTrue = false;
+        }
+        if (CheckGestureRotation(rightHand.transform.rotation, AdjustRotationToPlayer(currentGesture.rRotation), currentGesture.rRotationThreshold))
+        {
+            isRightRotTrue = true;
+        }
+        else
+        {
+            isRightRotTrue = false;
+        }
+
+        if (CheckGesturePosInRange(leftHand.transform.position, AdjustPositionToPlayer(currentGesture.lPosition), currentGesture.lPositionThreshold))
+        {
+
+            isLeftPosTrue = true;
+        }
+        else
+        {
+            isLeftPosTrue = false;
+        }
+        if (CheckGestureRotation(leftHand.transform.rotation, AdjustRotationToPlayer(currentGesture.lRotation), currentGesture.rRotationThreshold))
+        {
+
+            isLeftRotTrue = true;
+        }
+        else
+        {
+            isLeftRotTrue = false;
+        }
     }
 }

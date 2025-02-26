@@ -13,7 +13,6 @@ public class SpawnItem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
         GestureManager.OnGestureIdentified += Spawn;
     }
 

@@ -4,15 +4,18 @@ public class GestureDebugHelper : MonoBehaviour
 {
 
     
-
+    //Visuals for each hands Transforms
     [SerializeField]MeshRenderer allCorrectSphere,leftPositionSphere, rightPositionSphere, leftRotationSphere, rightRotationSphere;
 
     public GestureReader manager;
 
+    //Colour to set the respective visual to
     [SerializeField]Material trueMat, falseMat;
 
+    //What gesture is this visual representing
     public GestureDataSO currentGestureData;
 
+    //A visual representation of the target gesture (Pseudo tutorial)
     public GameObject gestureDisplayL, gestureDisplayR;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +27,8 @@ public class GestureDebugHelper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        currentGestureData = manager.currentGesture;
         CheckRight();
         CheckLeft();
         if(manager.CheckGesture(currentGestureData))
