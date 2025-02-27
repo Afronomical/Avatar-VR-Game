@@ -28,7 +28,7 @@ public class GestureDebugHelper : MonoBehaviour
     void Update()
     {
 
-        currentGestureData = manager.currentGesture;
+        currentGestureData = manager.debuggingGesture;
         CheckRight();
         CheckLeft();
         if(manager.CheckGesture(currentGestureData))

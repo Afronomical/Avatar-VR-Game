@@ -33,7 +33,7 @@ public class GestureUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gestureToUpdate = gestureReader.currentGesture;
+        gestureToUpdate = gestureReader.debuggingGesture;
     }
 
     void SetNewPose(InputAction.CallbackContext ctx)

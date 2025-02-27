@@ -8,12 +8,15 @@ public class GestureDataSO : ScriptableObject
     public Vector3 lPosition;
     public Quaternion lRotation;
 
-    public float lPositionThreshold;
-    public float lRotationThreshold;
+    public float lPositionThreshold = 0.3f;
+    public float lRotationThreshold = 30.0f;
 
     public Vector3 rPosition;
     public Quaternion rRotation;
 
-    public float rPositionThreshold;
-    public float rRotationThreshold;
+    public float rPositionThreshold = 0.3f;
+    public float rRotationThreshold = 30.0f;
+
+    [HideInInspector] public bool activeThisFrame;
+    [HideInInspector] public bool activeLastFrame;
 }

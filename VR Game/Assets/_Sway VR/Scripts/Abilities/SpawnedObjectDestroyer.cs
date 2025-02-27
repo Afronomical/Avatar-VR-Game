@@ -18,6 +18,10 @@ public class SpawnedObjectDestroyer : MonoBehaviour
 
     void DestroyMe()
     {
-        Destroy(gameObject);
+        if(gameObject != null)
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }

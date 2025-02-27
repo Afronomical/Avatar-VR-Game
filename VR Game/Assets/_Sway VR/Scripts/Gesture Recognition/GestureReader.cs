@@ -1,5 +1,37 @@
 using UnityEngine;
 
+public struct GestureActiveData
+{
+
+
+    bool activeThisFrame, activeLastFrame;
+
+
+    public GestureActiveData(bool gestureActiveThisFrame, bool gestureActiveLastFrame)
+    {
+        activeThisFrame = gestureActiveThisFrame;
+        activeLastFrame = gestureActiveLastFrame;
+    }
+    public bool started
+    {
+        get { return activeThisFrame && !activeLastFrame; }
+    }
+    public bool continued
+    {
+        get { return activeThisFrame && activeLastFrame; }
+    }
+    public bool ended
+    {
+        get { return !activeThisFrame && activeLastFrame; }
+    }
+    public bool inactive
+    {
+        get { return !activeThisFrame && !activeLastFrame; }
+    }
+
+
+}
+
 public class GestureReader : MonoBehaviour
 {
 
@@ -7,12 +39,8 @@ public class GestureReader : MonoBehaviour
     [SerializeField] GameObject leftHand;
     [SerializeField] GameObject Head;
 
-    public GestureDataSO currentGesture;
+    public GestureDataSO debuggingGesture;
 
-    [SerializeField] Vector3 rightGesturePos;
-    [SerializeField] Quaternion rightGestureRotation;
-    [SerializeField] Vector3 leftGesturePos;
-    [SerializeField] Quaternion leftGestureRotation;
     
     public Transform GetHeadTransform()
     {
@@ -36,17 +64,24 @@ public class GestureReader : MonoBehaviour
         transf.rotation = Quaternion.Inverse(Head.transform.rotation) * leftHand.transform.rotation;
         return transf;
     }
-    public bool isLeftPosTrue; 
-    public bool isLeftRotTrue;    
-    public bool isRightPosTrue;    
-    public bool isRightRotTrue;    
+    [HideInInspector] public bool isLeftPosTrue;
+    [HideInInspector] public bool isLeftRotTrue;    
+    [HideInInspector] public bool isRightPosTrue;
+    [HideInInspector] public bool isRightRotTrue;    
 
     // Update is called once per frame
     void Update()
     {
         DebugGesture();
+
     }
 
+    public void UpdateGestureState(GestureDataSO gesture)
+    {
+        gesture.activeLastFrame = gesture.activeThisFrame;
+
+        gesture.activeThisFrame = CheckGesture(gesture);
+    }
 
     public Vector3 AdjustPositionToPlayer(Vector3 offset)
     {
@@ -76,6 +111,16 @@ public class GestureReader : MonoBehaviour
         return (Quaternion.Angle(currentRotation, targetRotation) < rotThreshold);
 
         
+    }
+
+    /// <summary>
+    /// Returns the active data of the inputted gesture. Can then be further queried using gestureRef.started, gestureRef.continued or gestureRef.started
+    /// </summary>
+    /// <param name="gesture"></param>
+    /// <returns></returns>
+    public GestureActiveData GetGestureState(GestureDataSO gesture)
+    {
+        return new GestureActiveData(gesture.activeThisFrame, gesture.activeLastFrame);
     }
 
     public bool CheckGesture(GestureDataSO gesture)
@@ -113,7 +158,7 @@ public class GestureReader : MonoBehaviour
     private void DebugGesture()
     {
      //Debug to chekc if   
-        if (CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(currentGesture.rPosition), currentGesture.rPositionThreshold))
+        if (CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(debuggingGesture.rPosition), debuggingGesture.rPositionThreshold))
         {
 
             isRightPosTrue = true;
@@ -122,7 +167,7 @@ public class GestureReader : MonoBehaviour
         {
             isRightPosTrue = false;
         }
-        if (CheckGestureRotation(rightHand.transform.rotation, AdjustRotationToPlayer(currentGesture.rRotation), currentGesture.rRotationThreshold))
+        if (CheckGestureRotation(rightHand.transform.rotation, AdjustRotationToPlayer(debuggingGesture.rRotation), debuggingGesture.rRotationThreshold))
         {
             isRightRotTrue = true;
         }
@@ -131,7 +176,7 @@ public class GestureReader : MonoBehaviour
             isRightRotTrue = false;
         }
 
-        if (CheckGesturePosInRange(leftHand.transform.position, AdjustPositionToPlayer(currentGesture.lPosition), currentGesture.lPositionThreshold))
+        if (CheckGesturePosInRange(leftHand.transform.position, AdjustPositionToPlayer(debuggingGesture.lPosition), debuggingGesture.lPositionThreshold))
         {
 
             isLeftPosTrue = true;
@@ -140,7 +185,7 @@ public class GestureReader : MonoBehaviour
         {
             isLeftPosTrue = false;
         }
-        if (CheckGestureRotation(leftHand.transform.rotation, AdjustRotationToPlayer(currentGesture.lRotation), currentGesture.rRotationThreshold))
+        if (CheckGestureRotation(leftHand.transform.rotation, AdjustRotationToPlayer(debuggingGesture.lRotation), debuggingGesture.rRotationThreshold))
         {
 
             isLeftRotTrue = true;

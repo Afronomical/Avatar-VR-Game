@@ -8,12 +8,17 @@ public class SpawnItem : MonoBehaviour
 
     [SerializeField]GameObject objectToSpawn;
 
+    public float growRate = 1.0002f;
+    GameObject createdObject;
+
     Vector3 offset = new Vector3(0, 0, 5);
     Quaternion offsetRot = new Quaternion(0,0,0,0);
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GestureManager.OnGestureIdentified += Spawn;
+        GestureManager.OnGestureStarted += Spawn;
+        GestureManager.OnGestureExit += DeSpawn;
+        GestureManager.OnGestureActive += WhilstSpawned;
     }
 
     // Update is called once per frame
@@ -28,7 +33,22 @@ public class SpawnItem : MonoBehaviour
         {
             GestureReader gestureRead = manager.gestureReader;
             
-            Instantiate(objectToSpawn, gestureRead.AdjustPositionToPlayer(offset), gestureRead.AdjustRotationToPlayer(offsetRot));
+            createdObject = Instantiate(objectToSpawn, gestureRead.AdjustPositionToPlayer(offset), gestureRead.AdjustRotationToPlayer(offsetRot));
         }
     }
+    void WhilstSpawned(GestureDataSO gestureData)
+    {
+        if (gestureData == gestureToActivate)
+        {
+            createdObject.transform.localScale *= growRate * growRate;
+        }
+    }
+    void DeSpawn(GestureDataSO gestureData)
+    {
+        if(gestureData == gestureToActivate)
+        {
+            Destroy(createdObject);
+            createdObject = null;
+        }
+    }    
 }
