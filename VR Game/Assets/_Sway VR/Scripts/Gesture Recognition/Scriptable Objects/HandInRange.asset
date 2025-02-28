@@ -19,7 +19,7 @@ MonoBehaviour:
   lRotationThreshold: 30
   rPosition: {x: 0.11984241, y: -0.0057563707, z: 0.03261936}
   rRotation: {x: -0.85164845, y: -0.008806433, z: -0.0063528, w: 0.52400094}
-  rPositionThreshold: 0.09
+  rPositionThreshold: 0.27
   rRotationThreshold: 30
   activeThisFrame: 0
   activeLastFrame: 0

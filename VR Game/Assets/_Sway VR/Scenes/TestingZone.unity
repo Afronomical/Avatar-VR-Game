@@ -1374,7 +1374,7 @@ Transform:
   m_GameObject: {fileID: 302466404}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0044460287, y: 0.7253529, z: -0.004685044, w: 0.6883469}
-  m_LocalPosition: {x: 2.4891088, y: 0.56877637, z: -4.5069146}
+  m_LocalPosition: {x: 2.504, y: 0.331, z: -4.162}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1490,6 +1490,7 @@ MonoBehaviour:
   gestureLibrary:
   - {fileID: 11400000, guid: aca9096b1c890624d8d9b8185ed35598, type: 2}
   - {fileID: 11400000, guid: d80c3d351573a06408120f81d025db5f, type: 2}
+  currentGestureIndex: 0
   currentDebugGesture: {fileID: 11400000, guid: d80c3d351573a06408120f81d025db5f, type: 2}
   gestureReader: {fileID: 0}
 --- !u!114 &394587149

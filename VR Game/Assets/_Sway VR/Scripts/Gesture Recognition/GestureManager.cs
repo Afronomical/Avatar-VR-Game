@@ -1,11 +1,11 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 
 public struct InputState
 {
-
     
     public bool activeThisFrame, activeLastFrame;
 
@@ -27,8 +27,11 @@ public struct InputState
 [RequireComponent(typeof(GestureReader))]
 public class GestureManager : MonoBehaviour
 {
+    public XRIDefaultInputActions inputActions;
+
     public GestureDataSO[] gestureLibrary;
-   
+
+    [SerializeField] int currentGestureIndex = 0;
 
     //public InputState[] gestureStates;
 
@@ -42,9 +45,20 @@ public class GestureManager : MonoBehaviour
     public static event Action<GestureDataSO> OnGestureActive;
     public static event Action<GestureDataSO> OnGestureExit;
 
-    
+    private void OnEnable()
+    {
+        inputActions= new XRIDefaultInputActions();
+        inputActions.Enable();
+    }
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
     private void Start()
     {
+
+        inputActions.XRIRightInteraction.Select.performed += ChangeTestGesture;
+
         OnGestureStarted += GestureStartedEventCalled;
         OnGestureActive += GestureContinuedEventCalled;
         OnGestureExit += GestureEndedEventCalled;
@@ -99,9 +113,7 @@ public class GestureManager : MonoBehaviour
             {
                 OnGestureExit?.Invoke(pose);
             }
-            
-
-
+           
         }
     }
 
@@ -118,5 +130,18 @@ public class GestureManager : MonoBehaviour
     void GestureEndedEventCalled(GestureDataSO gestureData)
     {
         Debug.Log("GestureEnded: " + gestureData.name);
+    }
+
+    void ChangeTestGesture(InputAction.CallbackContext ctx)
+    {
+        currentGestureIndex++;
+        if(currentGestureIndex > gestureLibrary.Length - 1)
+        {
+            currentGestureIndex = 0;
+            Debug.Log("Reset Index");
+        }
+
+        currentDebugGesture = gestureLibrary[currentGestureIndex];
+
     }
 }
