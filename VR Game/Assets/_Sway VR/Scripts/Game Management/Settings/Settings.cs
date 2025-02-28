@@ -18,7 +18,7 @@ public class Settings : MonoBehaviour
 
     public bool isSnapRotating;
 
-
+    XRIDefaultInputActions inputActions;
       [Space]
 
       
@@ -30,18 +30,23 @@ public class Settings : MonoBehaviour
 
         set { turnSensitivity = Mathf.Clamp(value, minSnap, maxSnap); }
     }
-
-
-    private void Update()
+    private void OnEnable()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
-        {
-            isSnapRotating = !isSnapRotating;
-            UpdateSnapRotate();
-            SaveSettings();
-        }
+       inputActions= new XRIDefaultInputActions();
+       inputActions.Enable();
     }
 
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
+    private void Update()
+    {
+       
+            
+        
+    }
+    
     private void UpdateSnapRotate()
     {
         if (isSnapRotating)

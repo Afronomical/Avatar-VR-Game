@@ -17,7 +17,7 @@ public class SpawnItem : MonoBehaviour
     void Start()
     {
         GestureManager.OnGestureStarted += Spawn;
-        GestureManager.OnGestureExit += DeSpawn;
+        //GestureManager.OnGestureExit += DeSpawn;
         GestureManager.OnGestureActive += WhilstSpawned;
     }
 

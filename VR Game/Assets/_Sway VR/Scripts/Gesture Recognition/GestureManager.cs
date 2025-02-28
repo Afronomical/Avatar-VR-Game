@@ -81,6 +81,8 @@ public class GestureManager : MonoBehaviour
         foreach (GestureDataSO pose in gestureLibrary)
         {
             gestureReader.UpdateGestureState(pose);
+
+
             if (gestureReader.GetGestureState(pose).inactive)
             {
                 continue;

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   GestureName: TestGesture
-  lPosition: {x: -0.15001032, y: 0.013169896, z: 0.6525877}
-  lRotation: {x: -0.30632082, y: -0.10205464, z: 0.030526605, w: 0.9459496}
+  lPosition: {x: -0.17328446, y: -0.22387476, z: 0.33614552}
+  lRotation: {x: 0.23588613, y: -0.14448586, z: -0.5272107, w: -0.80344915}
   lPositionThreshold: 0.2
   lRotationThreshold: 30.01
-  rPosition: {x: 0.11953782, y: -0.09756093, z: 0.16142493}
-  rRotation: {x: 0.21335225, y: -0.054893587, z: 0.021269377, w: -0.9752001}
+  rPosition: {x: 0.18207842, y: -0.25048625, z: 0.30520856}
+  rRotation: {x: -0.28625578, y: -0.07630916, z: -0.4797002, w: 0.82590693}
   rPositionThreshold: 0.19
   rRotationThreshold: 30.6
+  activeThisFrame: 0
+  activeLastFrame: 0

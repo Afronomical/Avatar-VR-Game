@@ -11,9 +11,7 @@ public class GestureUpdater : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gestureReader= GetComponent<GestureReader>();
-
-        
+        gestureReader= GetComponent<GestureReader>();   
     }
     private void Awake()
     {
@@ -21,7 +19,6 @@ public class GestureUpdater : MonoBehaviour
     }
     private void OnEnable()
     {
-
         input.XRILeftInteraction.Enable();
 
         input.XRILeftInteraction.Activate.performed += SetNewPose;
