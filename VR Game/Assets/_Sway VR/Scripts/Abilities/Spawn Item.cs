@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SpawnItem : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class SpawnItem : MonoBehaviour
 
     public float growRate = 1.0002f;
     GameObject createdObject;
+
+    public float cooldown = 0.5f;
 
     Vector3 offset = new Vector3(0, 0, 5);
     Quaternion offsetRot = new Quaternion(0,0,0,0);
@@ -26,7 +29,7 @@ public class SpawnItem : MonoBehaviour
     {
         
     }
-
+    
     void Spawn(GestureDataSO gestureData)
     {
         if(gestureData == gestureToActivate)

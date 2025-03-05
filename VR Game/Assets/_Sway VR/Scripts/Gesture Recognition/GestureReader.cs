@@ -109,8 +109,6 @@ public class GestureReader : MonoBehaviour
     {
         //True if the angle between them is less than threshold
         return (Quaternion.Angle(currentRotation, targetRotation) < rotThreshold);
-
-        
     }
 
     /// <summary>
