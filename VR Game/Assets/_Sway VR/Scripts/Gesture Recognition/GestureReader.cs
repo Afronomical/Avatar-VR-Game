@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public struct GestureActiveData
 {
@@ -31,6 +32,12 @@ public struct GestureActiveData
 
 
 }
+public struct HandButtonState
+{
+    [Range(0, 1)]
+    public float thumb, index, grip;
+}
+
 
 public class GestureReader : MonoBehaviour
 {
@@ -41,7 +48,11 @@ public class GestureReader : MonoBehaviour
 
     public GestureDataSO debuggingGesture;
 
-    
+    XRIDefaultInputActions input;
+
+    HandButtonState lHand;
+    HandButtonState rHand;
+
     public Transform GetHeadTransform()
     {
         Transform transf = Head.transform;
@@ -67,13 +78,27 @@ public class GestureReader : MonoBehaviour
     [HideInInspector] public bool isLeftPosTrue;
     [HideInInspector] public bool isLeftRotTrue;    
     [HideInInspector] public bool isRightPosTrue;
-    [HideInInspector] public bool isRightRotTrue;    
+    [HideInInspector] public bool isRightRotTrue;
+
+    private void Awake()
+    {
+        input = new XRIDefaultInputActions();
+    }
 
     // Update is called once per frame
     void Update()
     {
         DebugGesture();
-
+    }
+    public void OnEnable()
+    {
+        input.XRILeftInteraction.Enable();     
+        input.XRIRightInteraction.Enable();     
+    }
+    private void OnDisable()
+    {
+        input.XRILeftInteraction.Disable();
+        input.XRIRightInteraction.Disable();
     }
 
     public void UpdateGestureState(GestureDataSO gesture)
@@ -99,16 +124,31 @@ public class GestureReader : MonoBehaviour
         
         return yRotation * offset;
     }
+    void UpdateHandButtons()
+    {
+        lHand.grip = input.XRILeftInteraction.ActivateValue.ReadValue<float>();
+        lHand.index = input.XRILeftInteraction.SelectValue.ReadValue<float>();
+        lHand.thumb = input.XRILeftInteraction.ThumbstickTouched.ReadValue<float>();
+
+        rHand.grip = input.XRIRightInteraction.ActivateValue.ReadValue<float>();
+        rHand.index = input.XRIRightInteraction.SelectValue.ReadValue<float>();
+        rHand.thumb = input.XRIRightInteraction.ThumbstickTouched.ReadValue<float>();
+
+    }
+    public bool CheckGestureButtons(GestureDataSO gesture)
+    {
+        return lHand.grip >= gesture.leftGrip && lHand.thumb >= gesture.leftThumb && lHand.index >= gesture.leftIndex &&
+               rHand.grip >= gesture.rightGrip && rHand.thumb >= gesture.rightThumb && rHand.index >= gesture.rightIndex;
+    }
     public bool CheckGesturePosInRange(Vector3 currentPosition, Vector3 gesturePosition, float posThreshold)
     {
-        
         //True if distance is less than threshold. Obvious I think...
         return Vector3.Distance(currentPosition, gesturePosition) < posThreshold;
     }
-    public bool CheckGestureRotation(Quaternion currentRotation, Quaternion targetRotation, float rotThreshold)
+    public bool CheckGestureRotation(Quaternion currentRotation, Quaternion gestureRotation, float rotThreshold)
     {
         //True if the angle between them is less than threshold
-        return (Quaternion.Angle(currentRotation, targetRotation) < rotThreshold);
+        return (Quaternion.Angle(currentRotation, gestureRotation) < rotThreshold);
     }
 
     /// <summary>
@@ -116,16 +156,18 @@ public class GestureReader : MonoBehaviour
     /// </summary>
     /// <param name="gesture"></param>
     /// <returns></returns>
-    public GestureActiveData GetGestureState(GestureDataSO gesture)
+    public static GestureActiveData GetGestureState(GestureDataSO gesture)
     {
         return new GestureActiveData(gesture.activeThisFrame, gesture.activeLastFrame);
     }
 
     public bool CheckGesture(GestureDataSO gesture)
     {
-         //Checks the position and rotation of each hand along with a mirrored version
+        //Checks the position and rotation of each hand along with a mirrored version
 
-         //TODO: Make mirrored position flipped on Head.Forward axis
+        //TODO: Make mirrored position flipped on Head.Forward axis
+
+        UpdateHandButtons();
 
         //Check original right hand
         if (!CheckGesturePosInRange(rightHand.transform.position, AdjustPositionToPlayer(gesture.rPosition), gesture.rPositionThreshold) ||
@@ -149,7 +191,11 @@ public class GestureReader : MonoBehaviour
                 return false; 
             }
         }
-
+        //Button checks are disabled until I can make it so it can't be used for spam
+       /* if(!CheckGestureButtons(gesture))
+        {
+            return false;
+        }*/
         return true; // Gesture is valid if all checks pass
 
     }

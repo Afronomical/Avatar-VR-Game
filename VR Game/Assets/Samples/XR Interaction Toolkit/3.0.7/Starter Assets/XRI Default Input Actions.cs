@@ -1061,6 +1061,24 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Thumbstick"",
+                    ""type"": ""Button"",
+                    ""id"": ""94c2974e-02fd-4262-a1b7-1592bede4ca3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Thumbstick Touched"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ee784fb-7be1-4ecb-8200-b968bf6d4c8c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1347,6 +1365,28 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""processors"": ""ScaleVector2(x=0),StickDeadzone"",
                     ""groups"": """",
                     ""action"": ""Translate Manipulation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c1ec105-7ca4-4fe8-a90e-5810fe905d66"",
+                    ""path"": ""<XRController>{LeftHand}/{Primary2DAxisClick}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Thumbstick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d6ed4f5-a938-4419-9dde-9accfcbd6328"",
+                    ""path"": ""<XRController>/{Primary2DAxisTouch}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Thumbstick Touched"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2132,6 +2172,15 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ThumbstickTouched"",
+                    ""type"": ""Button"",
+                    ""id"": ""0ec56926-473a-4107-9126-e031776cdf0e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -2420,6 +2469,28 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""action"": ""Translate Manipulation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd157890-4c79-4260-936b-75fd02452b57"",
+                    ""path"": ""<XRController>/{Primary2DAxisTouch}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThumbstickTouched"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""634f9bed-2638-4dca-a767-f4cf92f52532"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThumbstickTouched"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -2440,7 +2511,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""name"": ""Teleport Mode Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""d587b60c-39a0-4365-8075-477ce484ba0f"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -3443,6 +3514,8 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         m_XRILeftInteraction_DirectionalManipulation = m_XRILeftInteraction.FindAction("Directional Manipulation", throwIfNotFound: true);
         m_XRILeftInteraction_ScaleToggle = m_XRILeftInteraction.FindAction("Scale Toggle", throwIfNotFound: true);
         m_XRILeftInteraction_ScaleOverTime = m_XRILeftInteraction.FindAction("Scale Over Time", throwIfNotFound: true);
+        m_XRILeftInteraction_Thumbstick = m_XRILeftInteraction.FindAction("Thumbstick", throwIfNotFound: true);
+        m_XRILeftInteraction_ThumbstickTouched = m_XRILeftInteraction.FindAction("Thumbstick Touched", throwIfNotFound: true);
         // XRI Left Locomotion
         m_XRILeftLocomotion = asset.FindActionMap("XRI Left Locomotion", throwIfNotFound: true);
         m_XRILeftLocomotion_TeleportMode = m_XRILeftLocomotion.FindAction("Teleport Mode", throwIfNotFound: true);
@@ -3481,6 +3554,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         m_XRIRightInteraction_DirectionalManipulation = m_XRIRightInteraction.FindAction("Directional Manipulation", throwIfNotFound: true);
         m_XRIRightInteraction_ScaleToggle = m_XRIRightInteraction.FindAction("Scale Toggle", throwIfNotFound: true);
         m_XRIRightInteraction_ScaleOverTime = m_XRIRightInteraction.FindAction("Scale Over Time", throwIfNotFound: true);
+        m_XRIRightInteraction_ThumbstickTouched = m_XRIRightInteraction.FindAction("ThumbstickTouched", throwIfNotFound: true);
         // XRI Right Locomotion
         m_XRIRightLocomotion = asset.FindActionMap("XRI Right Locomotion", throwIfNotFound: true);
         m_XRIRightLocomotion_TeleportMode = m_XRIRightLocomotion.FindAction("Teleport Mode", throwIfNotFound: true);
@@ -4023,6 +4097,8 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
     private readonly InputAction m_XRILeftInteraction_DirectionalManipulation;
     private readonly InputAction m_XRILeftInteraction_ScaleToggle;
     private readonly InputAction m_XRILeftInteraction_ScaleOverTime;
+    private readonly InputAction m_XRILeftInteraction_Thumbstick;
+    private readonly InputAction m_XRILeftInteraction_ThumbstickTouched;
     /// <summary>
     /// Provides access to input actions defined in input action map "XRI Left Interaction".
     /// </summary>
@@ -4082,6 +4158,14 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         /// Provides access to the underlying input action "XRILeftInteraction/ScaleOverTime".
         /// </summary>
         public InputAction @ScaleOverTime => m_Wrapper.m_XRILeftInteraction_ScaleOverTime;
+        /// <summary>
+        /// Provides access to the underlying input action "XRILeftInteraction/Thumbstick".
+        /// </summary>
+        public InputAction @Thumbstick => m_Wrapper.m_XRILeftInteraction_Thumbstick;
+        /// <summary>
+        /// Provides access to the underlying input action "XRILeftInteraction/ThumbstickTouched".
+        /// </summary>
+        public InputAction @ThumbstickTouched => m_Wrapper.m_XRILeftInteraction_ThumbstickTouched;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -4144,6 +4228,12 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
             @ScaleOverTime.started += instance.OnScaleOverTime;
             @ScaleOverTime.performed += instance.OnScaleOverTime;
             @ScaleOverTime.canceled += instance.OnScaleOverTime;
+            @Thumbstick.started += instance.OnThumbstick;
+            @Thumbstick.performed += instance.OnThumbstick;
+            @Thumbstick.canceled += instance.OnThumbstick;
+            @ThumbstickTouched.started += instance.OnThumbstickTouched;
+            @ThumbstickTouched.performed += instance.OnThumbstickTouched;
+            @ThumbstickTouched.canceled += instance.OnThumbstickTouched;
         }
 
         /// <summary>
@@ -4191,6 +4281,12 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
             @ScaleOverTime.started -= instance.OnScaleOverTime;
             @ScaleOverTime.performed -= instance.OnScaleOverTime;
             @ScaleOverTime.canceled -= instance.OnScaleOverTime;
+            @Thumbstick.started -= instance.OnThumbstick;
+            @Thumbstick.performed -= instance.OnThumbstick;
+            @Thumbstick.canceled -= instance.OnThumbstick;
+            @ThumbstickTouched.started -= instance.OnThumbstickTouched;
+            @ThumbstickTouched.performed -= instance.OnThumbstickTouched;
+            @ThumbstickTouched.canceled -= instance.OnThumbstickTouched;
         }
 
         /// <summary>
@@ -4630,6 +4726,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
     private readonly InputAction m_XRIRightInteraction_DirectionalManipulation;
     private readonly InputAction m_XRIRightInteraction_ScaleToggle;
     private readonly InputAction m_XRIRightInteraction_ScaleOverTime;
+    private readonly InputAction m_XRIRightInteraction_ThumbstickTouched;
     /// <summary>
     /// Provides access to input actions defined in input action map "XRI Right Interaction".
     /// </summary>
@@ -4689,6 +4786,10 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         /// Provides access to the underlying input action "XRIRightInteraction/ScaleOverTime".
         /// </summary>
         public InputAction @ScaleOverTime => m_Wrapper.m_XRIRightInteraction_ScaleOverTime;
+        /// <summary>
+        /// Provides access to the underlying input action "XRIRightInteraction/ThumbstickTouched".
+        /// </summary>
+        public InputAction @ThumbstickTouched => m_Wrapper.m_XRIRightInteraction_ThumbstickTouched;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -4751,6 +4852,9 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
             @ScaleOverTime.started += instance.OnScaleOverTime;
             @ScaleOverTime.performed += instance.OnScaleOverTime;
             @ScaleOverTime.canceled += instance.OnScaleOverTime;
+            @ThumbstickTouched.started += instance.OnThumbstickTouched;
+            @ThumbstickTouched.performed += instance.OnThumbstickTouched;
+            @ThumbstickTouched.canceled += instance.OnThumbstickTouched;
         }
 
         /// <summary>
@@ -4798,6 +4902,9 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
             @ScaleOverTime.started -= instance.OnScaleOverTime;
             @ScaleOverTime.performed -= instance.OnScaleOverTime;
             @ScaleOverTime.canceled -= instance.OnScaleOverTime;
+            @ThumbstickTouched.started -= instance.OnThumbstickTouched;
+            @ThumbstickTouched.performed -= instance.OnThumbstickTouched;
+            @ThumbstickTouched.canceled -= instance.OnThumbstickTouched;
         }
 
         /// <summary>
@@ -5611,6 +5718,20 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnScaleOverTime(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Thumbstick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThumbstick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Thumbstick Touched" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThumbstickTouched(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "XRI Left Locomotion" which allows adding and removing callbacks.
@@ -5859,6 +5980,13 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnScaleOverTime(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ThumbstickTouched" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThumbstickTouched(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "XRI Right Locomotion" which allows adding and removing callbacks.

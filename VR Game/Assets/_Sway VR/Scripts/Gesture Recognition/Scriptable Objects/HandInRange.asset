@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: HandInRange
   m_EditorClassIdentifier: 
   GestureName: Hand In Range
+  activeThisFrame: 0
+  activeLastFrame: 0
   lPosition: {x: -0.121300235, y: 0.051325932, z: 0.55149364}
   lRotation: {x: 0.15348208, y: 0.09101938, z: -0.08827735, w: -0.97998255}
   lPositionThreshold: 0.2
   lRotationThreshold: 30
+  leftThumb: 0
+  leftIndex: 0
+  leftGrip: 0
   rPosition: {x: 0.11984241, y: -0.0057563707, z: 0.03261936}
   rRotation: {x: -0.85164845, y: -0.008806433, z: -0.0063528, w: 0.52400094}
   rPositionThreshold: 0.27
   rRotationThreshold: 30
-  activeThisFrame: 0
-  activeLastFrame: 0
+  rightThumb: 0
+  rightIndex: 0
+  rightGrip: 0

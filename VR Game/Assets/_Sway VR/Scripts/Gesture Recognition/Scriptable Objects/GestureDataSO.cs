@@ -5,22 +5,50 @@ public class GestureDataSO : ScriptableObject
 {
     public string GestureName;
 
+    [HideInInspector] public bool activeThisFrame;
+    [HideInInspector] public bool activeLastFrame;
+
+
+    [Header("Left Hand")]
     public Vector3 lPosition;
     public Quaternion lRotation;
 
     public float lPositionThreshold = 0.3f;
     public float lRotationThreshold = 30.0f;
 
+    [Tooltip("Value = Button state \n 0 is untouched, 1 is resting on and 2 is pressed")]
+    [Range(0, 1)]
+    public float leftThumb, leftIndex, leftGrip;
+
+
+
+    [Header("Right Hand")]
     public Vector3 rPosition;
     public Quaternion rRotation;
 
     public float rPositionThreshold = 0.3f;
     public float rRotationThreshold = 30.0f;
 
-    public float rVelocity = 0.1f;
-    public float lVelocity = 0.1f;
+    [Tooltip("Value = Button state \n 0 is untouched, 1 is resting on and 2 is pressed")]
+    [Range(0, 1)]
+    public float rightThumb, rightIndex, rightGrip;
+    public bool started
+    {
+        get { return activeThisFrame && !activeLastFrame; }
+    }
+    public bool continued
+    {
+        get { return activeThisFrame && activeLastFrame; }
+    }
+    public bool ended
+    {
+        get { return !activeThisFrame && activeLastFrame; }
+    }
+}
 
-
-    [HideInInspector] public bool activeThisFrame;
-    [HideInInspector] public bool activeLastFrame;
+public enum EFingerState
+{
+    AwayFromButton,
+    RestingOnButton,
+    PressedButton,
 }

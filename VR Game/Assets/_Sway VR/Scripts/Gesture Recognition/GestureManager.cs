@@ -3,27 +3,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
-
-public struct InputState
-{
-    
-    public bool activeThisFrame, activeLastFrame;
-
-    bool InputStart()
-    {
-        return activeThisFrame && !activeLastFrame;
-    }
-
-    bool InputGoing()
-    {
-        return activeThisFrame && activeLastFrame;
-    }
-    bool InputEnd()
-    {
-        return !activeThisFrame && activeLastFrame;
-    }
-}
-
 [RequireComponent(typeof(GestureReader))]
 public class GestureManager : MonoBehaviour
 {
@@ -33,9 +12,22 @@ public class GestureManager : MonoBehaviour
 
     [SerializeField] int currentGestureIndex = 0;
 
-    //public InputState[] gestureStates;
+    public static GestureManager instance;
 
-    [SerializeField] Dictionary<GestureDataSO, InputState> gestureActiveStates  = new Dictionary<GestureDataSO, InputState>();
+    
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance= this;
+            
+        }
+    }
+    //[SerializeField] Dictionary<GestureDataSO, InputState> gestureActiveStates  = new Dictionary<GestureDataSO, InputState>();
     //The gesture that is targeted for adjustment
     public GestureDataSO currentDebugGesture;
 
@@ -66,50 +58,33 @@ public class GestureManager : MonoBehaviour
 
         gestureReader = GetComponent<GestureReader>();
         
-        /*for(int i = 0; i < gestureLibrary.Length; i++)
-        {
-            gestureActiveStates.Add(gestureLibrary[i], new InputState());
-        }*/
+       
     }
     
     private void Update()
     {
         //Update the gesture for debug visuals and the target for being updated
         gestureReader.debuggingGesture = currentDebugGesture;
-        /*foreach (GestureDataSO pose in gestureLibrary)
-        {
-            if (gestureReader.CheckGesture(pose))
-            {
-                
-                InputState updatedInputState = gestureActiveStates[pose];
-
-                updatedInputState.activeLastFrame = updatedInputState.activeThisFrame;
-                updatedInputState.activeThisFrame = true;
-                //Broadcast the gesture found to all listeners that are subscribed to identitfy
-
-                
-                OnGestureStarted?.Invoke(pose);
-            }
-        }*/
+        
 
         foreach (GestureDataSO pose in gestureLibrary)
         {
             gestureReader.UpdateGestureState(pose);
 
 
-            if (gestureReader.GetGestureState(pose).inactive)
+            if (GestureReader.GetGestureState(pose).inactive)
             {
                 continue;
             }
-            else if (gestureReader.GetGestureState(pose).started)
+            else if (GestureReader.GetGestureState(pose).started)
             {
                 OnGestureStarted?.Invoke(pose);
             }
-            else if (gestureReader.GetGestureState(pose).continued)
+            else if (GestureReader.GetGestureState(pose).continued)
             {
                 OnGestureActive?.Invoke(pose);
             }
-            else if (gestureReader.GetGestureState(pose).ended)
+            else if (GestureReader.GetGestureState(pose).ended)
             {
                 OnGestureExit?.Invoke(pose);
             }
@@ -138,7 +113,6 @@ public class GestureManager : MonoBehaviour
         if(currentGestureIndex > gestureLibrary.Length - 1)
         {
             currentGestureIndex = 0;
-            Debug.Log("Reset Index");
         }
 
         currentDebugGesture = gestureLibrary[currentGestureIndex];
