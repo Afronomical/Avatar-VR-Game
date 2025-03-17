@@ -2,8 +2,11 @@ using UnityEngine;
 using System.Collections.Generic;
 public class AbilityManager : MonoBehaviour
 {
-    [SerializeReference] List<Ability> abilities;
+    [SerializeField] List<Ability> abilities;
 
+    public GameObject player;
+
+    
 
     public void AddAbility(Ability ability)
     {

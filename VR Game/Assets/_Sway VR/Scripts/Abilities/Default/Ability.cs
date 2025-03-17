@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public abstract class Ability : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public abstract class Ability : MonoBehaviour
 
     [Tooltip("The time the player must wait to activate the ability since the previous activation")]
     public float cooldownTimer = 0.5f;
-    bool isCooldownComplete = true;
+    protected bool isCooldownComplete = true;
+
+    protected event Action OnActivateAbility;
 
     bool _isActive = false;
     protected bool isActive
@@ -24,7 +27,13 @@ public abstract class Ability : MonoBehaviour
     [SerializeField]protected GestureDataSO[] requiredGestures;
 
     public AbilityManager abilityManager;
+    
 
+    private void Start()
+    {
+
+        //GestureManager.OnGestureStarted += CheckGesture;
+    }
     public void Initialize(AbilityManager _abilityManager)
     {
         abilityManager = _abilityManager;
@@ -36,8 +45,39 @@ public abstract class Ability : MonoBehaviour
         gestureIndex = 0;
     }
 
-    
-    
+    /*void CheckGesture(GestureDataSO gesture)
+    {
+        if (!isCooldownComplete) return;
+
+        if (gesture == requiredGestures[gestureIndex])
+        {
+
+            gestureIndex++;
+
+            if (gestureIndex >= requiredGestures.Length)
+            {
+                //Complete Ability
+
+                ActivateAbility();
+            }
+
+        }
+        else if (gestureIndex != 0 && gesture == requiredGestures[0])
+        {
+            gestureIndex = 0;
+        }
+        else
+        {
+
+        }
+
+    }*/
+
+    protected void ActivateAbility()
+    {
+        OnActivateAbility?.Invoke();
+        StartCooldown();
+    }
     protected void StartCooldown()
     {
         StartCoroutine(BeginCooldown());
@@ -45,12 +85,16 @@ public abstract class Ability : MonoBehaviour
 
     IEnumerator BeginCooldown()
     {
-        isCooldownComplete = false;
+        if (isCooldownComplete)
+        {
+            isCooldownComplete = false;
 
-        yield return new WaitForSeconds(cooldownTimer);
+            yield return new WaitForSeconds(cooldownTimer);
 
-        gestureIndex = 0;
-        isCooldownComplete = true;
+            gestureIndex = 0;
+            isCooldownComplete = true;
+        }
+        
     }
 
 }

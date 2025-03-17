@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8cf99c704e68146b10ab901c6993f0, type: 3}
+  m_Name: RockStart
+  m_EditorClassIdentifier: 
+  GestureName: 
+  activeThisFrame: 0
+  activeLastFrame: 0
+  lPosition: {x: -0.2662055, y: -0.44505143, z: 0.18721141}
+  lRotation: {x: -0.14753857, y: 0.013250528, z: 0.6086786, w: 0.779466}
+  lPositionThreshold: 0.3
+  lRotationThreshold: 30
+  leftThumb: 0
+  leftIndex: 0
+  leftGrip: 0
+  rPosition: {x: 0.23631622, y: -0.41339117, z: 0.1906997}
+  rRotation: {x: 0.17537753, y: 0.019870536, z: 0.51654273, w: -0.8378732}
+  rPositionThreshold: 0.3
+  rRotationThreshold: 30
+  rightThumb: 0
+  rightIndex: 0
+  rightGrip: 0

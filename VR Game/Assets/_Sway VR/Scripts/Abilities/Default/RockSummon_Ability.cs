@@ -2,27 +2,34 @@ using UnityEngine;
 
 public class RockSummon_Ability : Ability
 {
-    
-    GameObject createdObject;
 
+    GameObject createdObject;
+    [SerializeField] GameObject objectToSpawn;
+    [SerializeField] ParticleSystem summonParticle;
+
+    ParticleSystem summonedParticlesInstance;
     Vector3 offset = new Vector3(0, 0, 5);
     Quaternion offsetRot = new Quaternion(0, 0, 0, 0);
 
-    private void Start()
+    protected void Start()
     {
+        //base.Start();
+        //OnActivateAbility += Spawn;
         GestureManager.OnGestureStarted += CheckGesture;
     }
+
     void CheckGesture(GestureDataSO gesture)
     {
+        if (!isCooldownComplete) return;
+
         if (gesture == requiredGestures[gestureIndex])
         {
+
             gestureIndex++;
 
             if (gestureIndex >= requiredGestures.Length)
             {
-                //Complete Ability
-
-                
+                Spawn();
             }
 
         }
@@ -37,9 +44,17 @@ public class RockSummon_Ability : Ability
 
     }
 
-
     void Spawn()
     {
-        //createdObject = Instantiate(objectToSpawn, )
+        Transform player = abilityManager.player.transform;
+        Quaternion yRotation = Quaternion.Euler(0, player.eulerAngles.y, 0);
+
+        Vector3 rockPos = player.transform.position + yRotation * offset;
+
+        createdObject = Instantiate(objectToSpawn, rockPos, Quaternion.identity);
+
+        Debug.Log("Rock Summoned");
+
+        StartCooldown();
     }
 }
