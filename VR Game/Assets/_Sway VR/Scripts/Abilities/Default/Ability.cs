@@ -22,9 +22,14 @@ public abstract class Ability : MonoBehaviour
         set { _isActive = value;  gestureIndex = 0; }
     }
 
-    protected int gestureIndex = 0;
+    [SerializeField]protected int gestureIndex = 0;
+
+    public int GetGestureIndex()
+    {
+        return gestureIndex;
+    }
     [Tooltip("The sequence of gestures the player must complete to activate an ability")]
-    [SerializeField]protected GestureDataSO[] requiredGestures;
+    [SerializeField]public GestureDataSO[] requiredGestures;
 
     public AbilityManager abilityManager;
     
@@ -37,6 +42,10 @@ public abstract class Ability : MonoBehaviour
     public void Initialize(AbilityManager _abilityManager)
     {
         abilityManager = _abilityManager;
+    }
+    protected virtual void Update()
+    {
+        
     }
     public void SetActive(bool _isActive)
     {
@@ -96,5 +105,15 @@ public abstract class Ability : MonoBehaviour
         }
         
     }
+    
+    IEnumerator StartActivationTimer()
+    {
+        yield return new WaitForSeconds(activationTimer);
 
+        if(gestureIndex > 0 && isCooldownComplete == true)
+        {
+            gestureIndex= 0;
+            StopAllCoroutines();
+        }
+    }
 }

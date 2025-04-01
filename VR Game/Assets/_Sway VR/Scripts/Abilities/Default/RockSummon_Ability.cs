@@ -51,6 +51,9 @@ public class RockSummon_Ability : Ability
 
         Vector3 rockPos = player.transform.position + yRotation * offset;
 
+        /*  GameObject player = abilityManager.player;
+          Vector3 rockPos = new Vector3(player.transform.forward.x + offset.x, player.transform.forward.y + offset.y, player.transform.forward.z + offset.z);*/
+
         createdObject = Instantiate(objectToSpawn, rockPos, Quaternion.identity);
 
         Debug.Log("Rock Summoned");
