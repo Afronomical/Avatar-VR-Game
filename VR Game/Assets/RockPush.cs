@@ -1,12 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class RockPush : MonoBehaviour
+public class RockPush : Ability
 {
 
     //private SphereCollider collider;
-
-    [SerializeField] GestureDataSO gestureToActivate;
 
     [SerializeField]float pushForce = 10;
     [SerializeField]Transform pushDirection;
@@ -52,7 +50,7 @@ public class RockPush : MonoBehaviour
     public void PushObject(GestureDataSO gesture)
     {
 
-        if(gesture == gestureToActivate)
+        if(gesture == requiredGestures[requiredGestures.Length])
         {
             foreach (PushableRock item in pushableObjects)
             {
