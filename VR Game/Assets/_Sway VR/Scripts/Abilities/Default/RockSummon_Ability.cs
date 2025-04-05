@@ -33,10 +33,10 @@ public class RockSummon_Ability : Ability
             }
 
         }
-        else if (gestureIndex != 0 && gesture == requiredGestures[0])
+        /*else if (gestureIndex != 0 && gesture == requiredGestures[0])
         {
             gestureIndex = 0;
-        }
+        }*/
         else
         {
 
@@ -49,7 +49,8 @@ public class RockSummon_Ability : Ability
         Transform player = abilityManager.player.transform;
         Quaternion yRotation = Quaternion.Euler(0, player.eulerAngles.y, 0);
 
-        Vector3 rockPos = player.transform.position + yRotation * offset;
+        //Vector3 rockPos = player.transform.position + yRotation * offset;
+        Vector3 rockPos = player.transform.position + new Vector3(player.transform.forward.x * offset.x, player.transform.forward.y * offset.y, player.transform.forward.z * offset.z);// * offset;
 
         /*  GameObject player = abilityManager.player;
           Vector3 rockPos = new Vector3(player.transform.forward.x + offset.x, player.transform.forward.y + offset.y, player.transform.forward.z + offset.z);*/

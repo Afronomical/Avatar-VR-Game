@@ -2977,6 +2977,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 852772824}
+    - targetCorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 852772830}
     - targetCorrespondingSourceObject: {fileID: 1767192433, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 616128420}
@@ -3885,6 +3888,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gestureLibrary:
+  - {fileID: 11400000, guid: 70908d655fe0dd14fb957fdcc83e2c53, type: 2}
+  - {fileID: 11400000, guid: 1bc549bb39ae46f44b7ec1b9f1b15d41, type: 2}
   - {fileID: 11400000, guid: 3a12c7c3dc19427489f54f3c687f8042, type: 2}
   - {fileID: 11400000, guid: cc5279594ba9ed141af6aac56c65345d, type: 2}
   - {fileID: 11400000, guid: c1a114958ecc71147aa5c7dcf2af4080, type: 2}
@@ -5783,6 +5788,7 @@ MonoBehaviour:
   abilityName: Summon Rock
   activationTimer: 1
   cooldownTimer: 0.1
+  ongoingTimer: 1
   gestureIndex: 0
   requiredGestures:
   - {fileID: 11400000, guid: cc5279594ba9ed141af6aac56c65345d, type: 2}
@@ -5820,6 +5826,7 @@ MonoBehaviour:
   abilityName: Push Rock
   activationTimer: 1
   cooldownTimer: 0.5
+  ongoingTimer: 1
   gestureIndex: 0
   requiredGestures:
   - {fileID: 11400000, guid: c1a114958ecc71147aa5c7dcf2af4080, type: 2}
@@ -5842,6 +5849,7 @@ MonoBehaviour:
   abilityName: Flamethrower
   activationTimer: 1
   cooldownTimer: 4.22
+  ongoingTimer: 1
   gestureIndex: 0
   requiredGestures:
   - {fileID: 11400000, guid: 4ce208734bef2ce4b806d3f09815be86, type: 2}
@@ -5864,12 +5872,37 @@ MonoBehaviour:
   abilityName: Rainpour
   activationTimer: 1
   cooldownTimer: 10
+  ongoingTimer: 1
   gestureIndex: 0
   requiredGestures:
   - {fileID: 11400000, guid: 05e37558205b6a44aa2abdd26634f678, type: 2}
   - {fileID: 11400000, guid: 10b9910e6795cfc4e8cc51881e97e0fd, type: 2}
   abilityManager: {fileID: 852772805}
   rainGO: {fileID: 1828882729}
+--- !u!114 &852772830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852772788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a83929c0c51aff47a485daf33e3cecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName: DefaultAbilityName
+  activationTimer: 1
+  cooldownTimer: 0.5
+  ongoingTimer: 1
+  gestureIndex: 0
+  requiredGestures:
+  - {fileID: 11400000, guid: 70908d655fe0dd14fb957fdcc83e2c53, type: 2}
+  - {fileID: 11400000, guid: 1bc549bb39ae46f44b7ec1b9f1b15d41, type: 2}
+  abilityManager: {fileID: 852772805}
+  moveProvider: {fileID: 1007363612}
+  sprintSpeed: 5
+  runTimer: 1.63
 --- !u!1 &854812454
 GameObject:
   m_ObjectHideFlags: 0
@@ -6220,6 +6253,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1007363612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 153982007679157697, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 206776168}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1e8c997df241c1a67045eeac79b41b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1007566873
 GameObject:
   m_ObjectHideFlags: 0

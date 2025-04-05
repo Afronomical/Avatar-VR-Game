@@ -21,7 +21,7 @@ MonoBehaviour:
   lRotationThreshold: 30
   leftThumb: 0
   leftIndex: 0
-  leftGrip: 0
+  leftGrip: 1
   rPosition: {x: 0.15926644, y: -0.048166476, z: 0.54109967}
   rRotation: {x: -0.22677259, y: 0.034627803, z: -0.51456285, w: 0.8261962}
   rPositionThreshold: 0.57

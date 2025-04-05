@@ -13,6 +13,8 @@ public abstract class Ability : MonoBehaviour
     public float cooldownTimer = 0.5f;
     protected bool isCooldownComplete = true;
 
+    public float ongoingTimer = 1f;
+
     protected event Action OnActivateAbility;
 
     bool _isActive = false;
@@ -42,10 +44,6 @@ public abstract class Ability : MonoBehaviour
     public void Initialize(AbilityManager _abilityManager)
     {
         abilityManager = _abilityManager;
-    }
-    protected virtual void Update()
-    {
-        
     }
     public void SetActive(bool _isActive)
     {
@@ -115,5 +113,9 @@ public abstract class Ability : MonoBehaviour
             gestureIndex= 0;
             StopAllCoroutines();
         }
+    }
+    IEnumerator StartActiveTimer()
+    {
+        yield return new WaitForSeconds(ongoingTimer);
     }
 }

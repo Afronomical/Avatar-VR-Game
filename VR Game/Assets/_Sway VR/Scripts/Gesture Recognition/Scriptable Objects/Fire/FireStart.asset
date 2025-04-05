@@ -15,15 +15,15 @@ MonoBehaviour:
   GestureName: 
   activeThisFrame: 0
   activeLastFrame: 0
-  lPosition: {x: 0, y: 0, z: 0}
-  lRotation: {x: 0, y: 0, z: 0, w: 0}
+  lPosition: {x: 0.11677176, y: -0.023742378, z: 0.2998022}
+  lRotation: {x: -0.14966194, y: 0.7285485, z: 0.3382003, w: 0.57657516}
   lPositionThreshold: 0.3
   lRotationThreshold: 30
   leftThumb: 0
   leftIndex: 0
-  leftGrip: 0
-  rPosition: {x: 0, y: 0, z: 0}
-  rRotation: {x: 0, y: 0, z: 0, w: 0}
+  leftGrip: 1
+  rPosition: {x: -0.109356984, y: -0.017423974, z: 0.25846973}
+  rRotation: {x: 0.25169268, y: 0.5660142, z: 0.36750233, w: -0.69370085}
   rPositionThreshold: 0.3
   rRotationThreshold: 30
   rightThumb: 0
